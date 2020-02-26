@@ -19,4 +19,14 @@ class Tweets extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function getContentAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function setContentAttribute($value)
+    {
+        $this->attributes['content'] = encrypt($value);
+    }
 }
